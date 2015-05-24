@@ -1,5 +1,7 @@
 package alg;
 
+import utils.MatrixGenerator;
+
 import java.io.*;
 import java.util.*;
 
@@ -14,26 +16,24 @@ public class MatrixLoader {
 
     public double[][] readMatrix() throws IOException {
 
-        Scanner scanner = new Scanner(dataSource);
-        int size = scanner.nextInt();
-        scanner.nextLine();
+        if(matrix == null) {
 
-        matrix = new double[size][size];
+            Scanner scanner = new Scanner(new BufferedReader(new FileReader(dataSource)));
+            int size = scanner.nextInt();
 
-        System.out.println(size);
+            matrix = new double[size][size];
 
-        for(int i=0; i<size; i++) {
-            double[] row = new double[size];
-            String[] strings = (String[]) Arrays.asList(scanner.nextLine().split(" ")).toArray();
+            System.out.println(size);
 
-            for(int j=0; j<size; j++) {
-                row[j] = Double.valueOf(strings[j]);
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    matrix[i][j] = scanner.nextDouble();
+                }
             }
 
-            matrix[i] = row;
+            scanner.close();
         }
 
-        scanner.close();
         return matrix;
     }
 }
