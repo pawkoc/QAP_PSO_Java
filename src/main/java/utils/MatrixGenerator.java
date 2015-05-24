@@ -18,10 +18,11 @@ public class MatrixGenerator {
 
     public static double[][] shuffle(double[][] matrix, int trials) {
         Random rand = new Random();
+        int length = matrix.length;
 
         for(int i=0; i<trials; i++) {
-            int r1 = rand.nextInt(matrix.length);
-            int r2 = rand.nextInt(matrix.length);
+            int r1 = rand.nextInt(length);
+            int r2 = rand.nextInt(length);
 
             double[] tmp = matrix[r1];
             matrix[r1] = matrix[r2];
